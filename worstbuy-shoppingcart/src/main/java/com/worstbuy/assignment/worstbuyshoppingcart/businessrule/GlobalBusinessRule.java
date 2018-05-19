@@ -5,9 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.worstbuy.assignment.worstbuyshoppingcart.model.Product;
-import com.worstbuy.assignment.worstbuyshoppingcart.util.ProductCategory;
-
 import static com.worstbuy.assignment.worstbuyshoppingcart.util.Constants.VAT;
+import static com.worstbuy.assignment.worstbuyshoppingcart.util.DataUtil.checkProductIsInsuranceOrFree;
 
 @Component
 public class GlobalBusinessRule {
@@ -16,7 +15,7 @@ public class GlobalBusinessRule {
 		
 		//The Insurance and Free products should be exempted from VAT.
 		productList.forEach(product -> {
-			if ((!product.getCategoryId().equals(ProductCategory.INSURANCE.getCategoryId())) && product.getPrice() > 0) {
+			if (!checkProductIsInsuranceOrFree(product)) {
 				product.setPrice(product.getPrice() + (product.getPrice() * VAT));
 			}
 		});

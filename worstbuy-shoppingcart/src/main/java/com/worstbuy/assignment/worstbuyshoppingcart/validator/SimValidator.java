@@ -11,13 +11,12 @@ import static com.worstbuy.assignment.worstbuyshoppingcart.util.Constants.SIM_CA
 @Component
 public class SimValidator {
 	
-	public List<Product> validateSim(List<Product> simList) throws ValidationException {
+	public void validateSim(List<Product> simList) throws ValidationException {
 		
 		if(simList.size() > MAXIMUM_SIM_ORDER_LIMIT) {
 			throw new ValidationException(SIM_CARD_ORDER_LIMIT_VALIDATION_MESSAGE);
 		}
 		
-		return simList;
 	}
 
 }

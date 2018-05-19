@@ -7,16 +7,16 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 public class Cart {
 	
-	private List<Product> products;
+	private List<Order> orders;
 	
 	private double totalPrice;
 
-	public List<Product> getProducts() {
-		return products;
+	public List<Order> getOrders() {
+		return orders;
 	}
 
-	public void setProducts(List<Product> products) {
-		this.products = products;
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
 	}
 
 	public double getTotalPrice() {
@@ -30,7 +30,7 @@ public class Cart {
 	@Override
 	public int hashCode(){
 	    return new HashCodeBuilder()
-	    	.append(products)
+	    	.append(orders)
 	        .append(totalPrice)
 	        .toHashCode();
 	}
@@ -41,7 +41,7 @@ public class Cart {
 	    if(obj instanceof Cart ){
 	        final Cart other = (Cart) obj;
 	        return new EqualsBuilder()
-	        	.append(products, other.products)
+	        	.append(orders, other.orders)
 	            .append(totalPrice, other.totalPrice)
 	            .isEquals();
 	    } else{
@@ -52,7 +52,7 @@ public class Cart {
 
 	@Override
 	public String toString() {
-		return "Cart [products=" + products + ", totalPrice=" + totalPrice + "]";
+		return "Cart [orders=" + orders + ", totalPrice=" + totalPrice + "]";
 	}
 	
 	

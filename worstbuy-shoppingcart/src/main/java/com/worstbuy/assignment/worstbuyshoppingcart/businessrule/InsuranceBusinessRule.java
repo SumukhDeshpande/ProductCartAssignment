@@ -11,11 +11,12 @@ import com.worstbuy.assignment.worstbuyshoppingcart.util.ProductCategory;
 import static com.worstbuy.assignment.worstbuyshoppingcart.util.Constants.PRODUCT_PRICE;
 import static com.worstbuy.assignment.worstbuyshoppingcart.util.Constants.PRODUCT_PRICE_RELATED_INSURANCE_DISCOUNT;
 import static com.worstbuy.assignment.worstbuyshoppingcart.util.Constants.PHONE_INSURANCE_DISCOUNT;
+import static com.worstbuy.assignment.worstbuyshoppingcart.util.DataUtil.getNewInsuranceProduct;
 
 @Component
 public class InsuranceBusinessRule {
 	
-	public List<Product> getInsuranceForProducts(List<Product> productList, double insurancePrice){
+	public List<Product> getInsuranceForProducts(List<Product> productList, Product insuranceProduct){
 		List<Product> productsWithInsuranceList = productList.stream().filter(product -> product.isInsuranceRequired())
 				.collect(Collectors.toList());
 		
@@ -38,10 +39,7 @@ public class InsuranceBusinessRule {
 				discount = PRODUCT_PRICE_RELATED_INSURANCE_DISCOUNT;
 			}
 			
-			Product insuranceProduct = new Product();
-			product.setCategoryId(ProductCategory.INSURANCE.getCategoryId());
-			product.setPrice(insurancePrice * discount);
-			insuranceAppliedList.add(insuranceProduct);
+			insuranceAppliedList.add(getNewInsuranceProduct(insuranceProduct, discount));
 		
 		}
 		return insuranceAppliedList;

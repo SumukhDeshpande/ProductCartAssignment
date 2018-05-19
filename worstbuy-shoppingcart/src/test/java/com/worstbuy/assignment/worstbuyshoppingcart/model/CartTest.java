@@ -15,32 +15,30 @@ public class CartTest {
 		Cart cartOne = new Cart();
 		Cart cartTwo = new Cart();
 		
-		Product product = new Product();
-		product.setId(10001L);
-		product.setMaker("Samsung");
-		product.setModel("Samsung-J7-4GLTE");
-		product.setName("Samsung-J7");
-		product.setPrice(7000);
-		product.setDescription("Samsung-4G-latest-phone.");
-		product.setCategoryId(1L);
-		List<Product> mockProductList = new ArrayList<Product>();
-		mockProductList.add(product);
+		Order order = new Order();
+		order.setMaker("Samsung");
+		order.setModel("Samsung-J7-4GLTE");
+		order.setName("Samsung-J7");
+		order.setPrice(7000);
+		order.setDescription("Samsung-4G-latest-phone.");
+		order.setCategoryId(1L);
+		List<Order> mockProductList = new ArrayList<Order>();
+		mockProductList.add(order);
 		
-		cartOne.setProducts(mockProductList);
+		cartOne.setOrders(mockProductList);
 		cartOne.setTotalPrice(5000);
 		
-		Product anotherProduct = new Product();
-		anotherProduct.setId(10001L);
-		anotherProduct.setMaker("Samsung");
-		anotherProduct.setModel("Samsung-J7-4GLTE");
-		anotherProduct.setName("Samsung-J7");
-		anotherProduct.setPrice(7000);
-		anotherProduct.setDescription("Samsung-4G-latest-phone.");
-		anotherProduct.setCategoryId(1L);
-		List<Product> mockAnotherProductList = new ArrayList<Product>();
-		mockAnotherProductList.add(anotherProduct);
+		Order anotherOrder = new Order();
+		anotherOrder.setMaker("Samsung");
+		anotherOrder.setModel("Samsung-J7-4GLTE");
+		anotherOrder.setName("Samsung-J7");
+		anotherOrder.setPrice(7000);
+		anotherOrder.setDescription("Samsung-4G-latest-phone.");
+		anotherOrder.setCategoryId(1L);
+		List<Order> mockAnotherProductList = new ArrayList<Order>();
+		mockAnotherProductList.add(anotherOrder);
 		
-		cartTwo.setProducts(mockAnotherProductList);
+		cartTwo.setOrders(mockAnotherProductList);
 		cartTwo.setTotalPrice(5000);
 		
 		assertEquals(true, cartOne.equals(cartTwo));

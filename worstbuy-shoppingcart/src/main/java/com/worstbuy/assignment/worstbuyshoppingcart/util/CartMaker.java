@@ -15,6 +15,7 @@ import com.worstbuy.assignment.worstbuyshoppingcart.exception.ValidationExceptio
 import com.worstbuy.assignment.worstbuyshoppingcart.model.Cart;
 import com.worstbuy.assignment.worstbuyshoppingcart.model.Product;
 import com.worstbuy.assignment.worstbuyshoppingcart.validator.SimValidator;
+import static com.worstbuy.assignment.worstbuyshoppingcart.util.DataUtil.translateProductToOrder;
 
 @Component
 public class CartMaker {
@@ -41,7 +42,6 @@ public class CartMaker {
 
 		List<Product> phoneList = new ArrayList<Product>();
 		List<Product> tvList = new ArrayList<Product>();
-		List<Product> insuranceList = new ArrayList<Product>();
 		List<Product> phoneCaseList = new ArrayList<Product>();
 		List<Product> simList = new ArrayList<Product>();
 		
@@ -61,41 +61,50 @@ public class CartMaker {
 			}
 		}
 
-		double phonePrice;
-		double insurancePrice = 0;
-		double tvPrice = 0;
-		double simPrice = 0;
-		double phoneCasePrice = 0;
+		
+		Product insuranceProduct = null;
+		Product simProduct = null;
+		Product phoneProduct = null;
+		Product tvProduct = null;
+		Product phoneCaseProduct = null;
 
 		for (Product product : productMasterList) {
 			if (product.getCategoryId().equals(ProductCategory.PHONE.getCategoryId())) {
-				phonePrice = product.getPrice();
+				phoneProduct = product;
 			} else if (product.getCategoryId().equals(ProductCategory.TELEVISION.getCategoryId())) {
-				tvPrice = product.getPrice();
+				tvProduct = product;
 			}else if (product.getCategoryId().equals(ProductCategory.PHONE_CASE.getCategoryId())) {
-				phoneCasePrice = product.getPrice();
+				phoneCaseProduct = product;
 			} else if (product.getCategoryId().equals(ProductCategory.SIM.getCategoryId())) {
-				simPrice = product.getPrice();
+				simProduct = product;
+			}  else if (product.getCategoryId().equals(ProductCategory.INSURANCE.getCategoryId())) {
+				insuranceProduct = product;
 			}
 		}
 
 		//Business Rule: The law prevents anyone buying more than 10 SIM cards in a single purchase.
-		simList = simValidator.validateSim(simList);
+		
+		simValidator.validateSim(simList);
 		
 		//Business Rule: One Sim card is added for free for each phone sold.
 		//Business Rule: SimCard sold on their own(not with the phone) are "Buy one get One Free".
 		simBusinessRule.processSimOrder(simList, phoneList);
 		
 		//Business Rule: There is a "Buy 3 get 4" on phone cases.
-		phoneCaseBusinessRule.processPhoneCaseOrder(phoneCaseList);
+		if(!phoneCaseList.isEmpty()) {
+			phoneCaseBusinessRule.processPhoneCaseOrder(phoneCaseList);
+		}
 		
 		//Business Rule: There is 10% discount on SamZung products.
-		productMakerBusinessRule.applyProductMakerRules(phoneList, tvList, simList, phoneCaseList);	
+		productMakerBusinessRule.applyProductMakerRuleForPhone(phoneList, phoneProduct);
+		productMakerBusinessRule.applyProductMakerRuleForPhoneCases(phoneCaseList, phoneCaseProduct);
+		productMakerBusinessRule.applyProductMakerRuleForSim(simList, simProduct);
+		productMakerBusinessRule.applyProductMakerRuleForTelevisions(tvList, tvProduct);
 		
 		//Business Rule: Insurance is discounted 25% for any product over 400.
 		//Business Rule: Insurance is discounted 15% on phones.
 		//Business Rule: Insurance discounts are not cumulative. 
-		List<Product> insuranceAppliedList = insuranceBusinessRule.getInsuranceForProducts(productInputListCopy, insurancePrice);
+		List<Product> insuranceAppliedList = insuranceBusinessRule.getInsuranceForProducts(productInputListCopy, insuranceProduct);
 		
 		List<Product> finalListOfProducts = new ArrayList<Product>();
 		finalListOfProducts.addAll(simList);
@@ -109,7 +118,7 @@ public class CartMaker {
 		
 		Cart cart = new Cart();
 		
-		cart.setProducts(finalListOfProducts);
+		cart.setOrders(translateProductToOrder(finalListOfProducts));
 		cart.setTotalPrice(DataUtil.getTotalPrice(finalListOfProducts));
 		
 		

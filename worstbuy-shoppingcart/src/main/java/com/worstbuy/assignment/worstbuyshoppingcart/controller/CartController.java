@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.worstbuy.assignment.worstbuyshoppingcart.exception.ValidationException;
@@ -21,7 +22,7 @@ public class CartController {
 	
 	
 	@PostMapping("/worstbuyshop/createCart")
-	public ResponseEntity<Cart> createCart(List<Product> productList) {
+	public ResponseEntity<Cart> createCart(@RequestBody List<Product> productList) {
 		ResponseEntity<Cart> cart = null;
 		try {
 			cart = new ResponseEntity<Cart>(cartService.createCart(productList), HttpStatus.OK);
