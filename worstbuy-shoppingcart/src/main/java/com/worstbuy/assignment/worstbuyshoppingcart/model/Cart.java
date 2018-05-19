@@ -9,7 +9,7 @@ public class Cart {
 	
 	private List<Product> products;
 	
-	private int totalPrice;
+	private double totalPrice;
 
 	public List<Product> getProducts() {
 		return products;
@@ -19,11 +19,11 @@ public class Cart {
 		this.products = products;
 	}
 
-	public int getTotalPrice() {
+	public double getTotalPrice() {
 		return totalPrice;
 	}
 
-	public void setTotalPrice(int totalPrice) {
+	public void setTotalPrice(double totalPrice) {
 		this.totalPrice = totalPrice;
 	}
 	
@@ -38,7 +38,7 @@ public class Cart {
 	
 	@Override
 	public boolean equals(final Object obj){
-	    if(obj instanceof Product){
+	    if(obj instanceof Cart ){
 	        final Cart other = (Cart) obj;
 	        return new EqualsBuilder()
 	        	.append(products, other.products)

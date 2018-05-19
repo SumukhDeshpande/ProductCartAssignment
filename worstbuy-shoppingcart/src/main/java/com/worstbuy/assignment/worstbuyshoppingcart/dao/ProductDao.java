@@ -2,6 +2,7 @@ package com.worstbuy.assignment.worstbuyshoppingcart.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +25,19 @@ public class ProductDao {
 	}
 	
 	public String updateProduct(Product product) {
-		return null;
+		String updateSql = "update product set name = ?, maker = ?, model = ?, description = ?, price = ?, category_id = ? where id = ?";
+		
+		Object[] params = {product.getName(), product.getMaker(), product.getModel(), product.getDescription(), product.getPrice(), product.getCategoryId(), product.getId()};
+		
+		int[] types = {Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.INTEGER, Types.INTEGER, Types.INTEGER};
+		
+		int updateResult = jdbcTemplate.update(updateSql, params, types);
+		
+		return updateResult > 0 ? "Record is updated." : "Nothing is updated." ;
 	}
 	
 	
-	class ProductRowMapper implements RowMapper<Product> {
+	private class ProductRowMapper implements RowMapper<Product> {
 		@Override
 		public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Product product = new Product();

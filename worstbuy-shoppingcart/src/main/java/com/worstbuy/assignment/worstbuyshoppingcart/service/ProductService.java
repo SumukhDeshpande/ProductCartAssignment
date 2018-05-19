@@ -10,24 +10,16 @@ import com.worstbuy.assignment.worstbuyshoppingcart.model.Product;
 
 @Service
 public class ProductService {
-	
+
 	@Autowired
 	ProductDao productDao;
-	
-	
-	public List<Product> getAllProducts(){
-		
-		
+
+	public List<Product> getAllProducts() {
 		return productDao.getAllProducts();
-			
-			
-		
 	}
-	
-	
+
 	public String updateProduct(Product product) {
 		return productDao.updateProduct(product);
 	}
-	
 
 }
