@@ -4,11 +4,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.worstbuy.assignment.worstbuyshoppingcart.businessrule.interfaces.SimRule;
 import com.worstbuy.assignment.worstbuyshoppingcart.model.Product;
 import static com.worstbuy.assignment.worstbuyshoppingcart.util.DataUtil.getFreeSim;
 
 @Component
-public class SimBusinessRule {
+public class SimBusinessRule implements SimRule{
 
 	public List<Product> processSimOrder(List<Product> simList, List<Product> phoneList, Product simMasterProduct) {
 

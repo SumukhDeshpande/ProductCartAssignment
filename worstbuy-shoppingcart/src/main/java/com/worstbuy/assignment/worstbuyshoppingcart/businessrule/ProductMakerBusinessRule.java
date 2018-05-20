@@ -10,7 +10,9 @@ import static com.worstbuy.assignment.worstbuyshoppingcart.util.Constants.SAMZUN
 import static com.worstbuy.assignment.worstbuyshoppingcart.util.DataUtil.calculateDiscount;
 
 @Component
-public class ProductMakerBusinessRule {
+public class ProductMakerBusinessRule{
+	
+	
 
 	public void applyProductMakerRuleForPhone(List<Product> phoneList, Product phoneProduct) {
 

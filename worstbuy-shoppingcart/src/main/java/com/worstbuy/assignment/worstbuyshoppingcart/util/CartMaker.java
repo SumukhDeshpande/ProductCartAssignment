@@ -8,11 +8,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.worstbuy.assignment.worstbuyshoppingcart.businessrule.GlobalBusinessRule;
-import com.worstbuy.assignment.worstbuyshoppingcart.businessrule.InsuranceBusinessRule;
-import com.worstbuy.assignment.worstbuyshoppingcart.businessrule.PhoneCaseBusinessRule;
-import com.worstbuy.assignment.worstbuyshoppingcart.businessrule.ProductMakerBusinessRule;
-import com.worstbuy.assignment.worstbuyshoppingcart.businessrule.SimBusinessRule;
+import com.worstbuy.assignment.worstbuyshoppingcart.businessrule.interfaces.GlobalRule;
+import com.worstbuy.assignment.worstbuyshoppingcart.businessrule.interfaces.InsuranceRule;
+import com.worstbuy.assignment.worstbuyshoppingcart.businessrule.interfaces.PhoneCaseRule;
+import com.worstbuy.assignment.worstbuyshoppingcart.businessrule.interfaces.ProductMakerRule;
+import com.worstbuy.assignment.worstbuyshoppingcart.businessrule.interfaces.SimRule;
 import com.worstbuy.assignment.worstbuyshoppingcart.exception.ValidationException;
 import com.worstbuy.assignment.worstbuyshoppingcart.model.Cart;
 import com.worstbuy.assignment.worstbuyshoppingcart.model.Product;
@@ -25,19 +25,28 @@ public class CartMaker {
 	SimValidator simValidator;
 	
 	@Autowired
-	SimBusinessRule simBusinessRule;
+	SimRule simBusinessRule;
 	
 	@Autowired
-	PhoneCaseBusinessRule phoneCaseBusinessRule;
+	PhoneCaseRule phoneCaseBusinessRule;
 	
 	@Autowired
-	ProductMakerBusinessRule productMakerBusinessRule;
+	ProductMakerRule phoneCaseMakerRule;
 	
 	@Autowired
-	InsuranceBusinessRule insuranceBusinessRule;
+	ProductMakerRule phoneMakerRule;
 	
 	@Autowired
-	GlobalBusinessRule globalBusinessRule;
+	ProductMakerRule simMakerRule;
+	
+	@Autowired
+	ProductMakerRule televisionMakerRule;
+	
+	@Autowired
+	InsuranceRule insuranceBusinessRule;
+	
+	@Autowired
+	GlobalRule globalBusinessRule;
 
 	public Cart createCart(List<Product> productListInput, List<Product> productMasterList) throws ValidationException {
 
@@ -97,10 +106,10 @@ public class CartMaker {
 		}
 		
 		//Business Rule: There is 10% discount on SamZung products.
-		productMakerBusinessRule.applyProductMakerRuleForPhone(phoneList, phoneProduct);
-		productMakerBusinessRule.applyProductMakerRuleForPhoneCases(phoneCaseList, phoneCaseProduct);
-		productMakerBusinessRule.applyProductMakerRuleForSim(simList, simProduct);
-		productMakerBusinessRule.applyProductMakerRuleForTelevisions(tvList, tvProduct);
+		phoneMakerRule.applyProductMakerRule(phoneList, phoneProduct);
+		phoneCaseMakerRule.applyProductMakerRule(phoneCaseList, phoneCaseProduct);
+		simMakerRule.applyProductMakerRule(simList, simProduct);
+		televisionMakerRule.applyProductMakerRule(tvList, tvProduct);
 		
 		//Business Rule: Insurance is discounted 25% for any product over 400.
 		//Business Rule: Insurance is discounted 15% on phones.

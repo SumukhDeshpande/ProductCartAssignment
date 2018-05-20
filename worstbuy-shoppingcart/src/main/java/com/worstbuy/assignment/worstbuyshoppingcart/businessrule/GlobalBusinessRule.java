@@ -4,12 +4,13 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.worstbuy.assignment.worstbuyshoppingcart.businessrule.interfaces.GlobalRule;
 import com.worstbuy.assignment.worstbuyshoppingcart.model.Product;
 import static com.worstbuy.assignment.worstbuyshoppingcart.util.Constants.VAT;
 import static com.worstbuy.assignment.worstbuyshoppingcart.util.DataUtil.checkProductIsInsuranceOrFree;
 
 @Component
-public class GlobalBusinessRule {
+public class GlobalBusinessRule implements GlobalRule{
 
 	public void applyCommonBusinessRule(List<Product> productList) {
 		

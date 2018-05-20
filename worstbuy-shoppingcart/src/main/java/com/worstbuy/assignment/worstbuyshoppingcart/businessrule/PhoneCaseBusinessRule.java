@@ -4,11 +4,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.worstbuy.assignment.worstbuyshoppingcart.businessrule.interfaces.PhoneCaseRule;
 import com.worstbuy.assignment.worstbuyshoppingcart.model.Product;
 import static com.worstbuy.assignment.worstbuyshoppingcart.util.DataUtil.getFreePhoneCase;
 
 @Component
-public class PhoneCaseBusinessRule {
+public class PhoneCaseBusinessRule implements PhoneCaseRule{
 	
 	public List<Product> processPhoneCaseOrder(List<Product> phoneCaseList, Product phoneCaseMasterDetails){
 		//For every 3 Phone Cases you get 4 Phone Cases free. 

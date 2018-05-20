@@ -11,11 +11,13 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
+import com.worstbuy.assignment.worstbuyshoppingcart.businessrule.interfaces.InsuranceRule;
 import com.worstbuy.assignment.worstbuyshoppingcart.model.Product;
 import com.worstbuy.assignment.worstbuyshoppingcart.util.ProductCategory;
 
 @Component
-public class InsuranceBusinessRule {
+public class InsuranceBusinessRule implements InsuranceRule{
+	
 	
 	public List<Product> getInsuranceForProducts(List<Product> productList, List<Product> productMasterList){
 		List<Product> productsWithInsuranceList = productList.stream().filter(product -> product.isInsuranceRequired())
