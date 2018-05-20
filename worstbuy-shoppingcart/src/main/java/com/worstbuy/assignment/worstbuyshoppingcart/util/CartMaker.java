@@ -1,5 +1,7 @@
 package com.worstbuy.assignment.worstbuyshoppingcart.util;
 
+import static com.worstbuy.assignment.worstbuyshoppingcart.util.DataUtil.translateProductToOrder;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +17,6 @@ import com.worstbuy.assignment.worstbuyshoppingcart.exception.ValidationExceptio
 import com.worstbuy.assignment.worstbuyshoppingcart.model.Cart;
 import com.worstbuy.assignment.worstbuyshoppingcart.model.Product;
 import com.worstbuy.assignment.worstbuyshoppingcart.validator.SimValidator;
-import static com.worstbuy.assignment.worstbuyshoppingcart.util.DataUtil.translateProductToOrder;
 
 @Component
 public class CartMaker {
@@ -88,11 +89,11 @@ public class CartMaker {
 		
 		//Business Rule: One Sim card is added for free for each phone sold.
 		//Business Rule: SimCard sold on their own(not with the phone) are "Buy one get One Free".
-		simBusinessRule.processSimOrder(simList, phoneList);
+		simBusinessRule.processSimOrder(simList, phoneList, simProduct);
 		
 		//Business Rule: There is a "Buy 3 get 4" on phone cases.
 		if(!phoneCaseList.isEmpty()) {
-			phoneCaseBusinessRule.processPhoneCaseOrder(phoneCaseList);
+			phoneCaseBusinessRule.processPhoneCaseOrder(phoneCaseList, phoneCaseProduct);
 		}
 		
 		//Business Rule: There is 10% discount on SamZung products.
@@ -104,7 +105,7 @@ public class CartMaker {
 		//Business Rule: Insurance is discounted 25% for any product over 400.
 		//Business Rule: Insurance is discounted 15% on phones.
 		//Business Rule: Insurance discounts are not cumulative. 
-		List<Product> insuranceAppliedList = insuranceBusinessRule.getInsuranceForProducts(productInputListCopy, insuranceProduct);
+		List<Product> insuranceAppliedList = insuranceBusinessRule.getInsuranceForProducts(productInputListCopy, productMasterList);
 		
 		List<Product> finalListOfProducts = new ArrayList<Product>();
 		finalListOfProducts.addAll(simList);

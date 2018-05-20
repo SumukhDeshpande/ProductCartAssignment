@@ -1,5 +1,10 @@
 package com.worstbuy.assignment.worstbuyshoppingcart.businessrule;
 
+import static com.worstbuy.assignment.worstbuyshoppingcart.util.DataUtil.getInsuranceForPhone;
+import static com.worstbuy.assignment.worstbuyshoppingcart.util.DataUtil.getInsuranceForPhoneCase;
+import static com.worstbuy.assignment.worstbuyshoppingcart.util.DataUtil.getInsuranceForSim;
+import static com.worstbuy.assignment.worstbuyshoppingcart.util.DataUtil.getInsuranceForTv;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,38 +13,47 @@ import org.springframework.stereotype.Component;
 
 import com.worstbuy.assignment.worstbuyshoppingcart.model.Product;
 import com.worstbuy.assignment.worstbuyshoppingcart.util.ProductCategory;
-import static com.worstbuy.assignment.worstbuyshoppingcart.util.Constants.PRODUCT_PRICE;
-import static com.worstbuy.assignment.worstbuyshoppingcart.util.Constants.PRODUCT_PRICE_RELATED_INSURANCE_DISCOUNT;
-import static com.worstbuy.assignment.worstbuyshoppingcart.util.Constants.PHONE_INSURANCE_DISCOUNT;
-import static com.worstbuy.assignment.worstbuyshoppingcart.util.DataUtil.getNewInsuranceProduct;
 
 @Component
 public class InsuranceBusinessRule {
 	
-	public List<Product> getInsuranceForProducts(List<Product> productList, Product insuranceProduct){
+	public List<Product> getInsuranceForProducts(List<Product> productList, List<Product> productMasterList){
 		List<Product> productsWithInsuranceList = productList.stream().filter(product -> product.isInsuranceRequired())
 				.collect(Collectors.toList());
 		
 		List<Product> insuranceAppliedList = new ArrayList<Product>();
 		
+		Product insuranceProduct = null;
+		Product simProduct = null;
+		Product phoneProduct = null;
+		Product tvProduct = null;
+		Product phoneCaseProduct = null;
+		
+		for (Product product : productMasterList) {
+			if (product.getCategoryId().equals(ProductCategory.PHONE.getCategoryId())) {
+				phoneProduct = product;
+			} else if (product.getCategoryId().equals(ProductCategory.TELEVISION.getCategoryId())) {
+				tvProduct = product;
+			}else if (product.getCategoryId().equals(ProductCategory.PHONE_CASE.getCategoryId())) {
+				phoneCaseProduct = product;
+			} else if (product.getCategoryId().equals(ProductCategory.SIM.getCategoryId())) {
+				simProduct = product;
+			}  else if (product.getCategoryId().equals(ProductCategory.INSURANCE.getCategoryId())) {
+				insuranceProduct = product;
+			}
+		}
+		
 		for(Product product: productsWithInsuranceList) {
-			boolean productIsPhone  = false;
-			double discount = 1;
-			if(product.getCategoryId().equals(ProductCategory.PHONE.getCategoryId())) {
-				productIsPhone = true;
-			}
-			if(!productIsPhone && product.getPrice() > PRODUCT_PRICE) {
-				discount = PRODUCT_PRICE_RELATED_INSURANCE_DISCOUNT;
-			}
-			if(productIsPhone && !(product.getPrice() > PRODUCT_PRICE)) {
-				discount = PHONE_INSURANCE_DISCOUNT;
-			}
-			//Assumption is made if Product is Phone and Price > 400 then maximum of discount can be applied which is 25%
-			if(productIsPhone && product.getPrice() > PRODUCT_PRICE) {
-				discount = PRODUCT_PRICE_RELATED_INSURANCE_DISCOUNT;
-			}
 			
-			insuranceAppliedList.add(getNewInsuranceProduct(insuranceProduct, discount));
+			if (product.getCategoryId().equals(ProductCategory.PHONE.getCategoryId())) {
+				insuranceAppliedList.add(getInsuranceForPhone(phoneProduct, insuranceProduct));
+			} else if (product.getCategoryId().equals(ProductCategory.TELEVISION.getCategoryId())) {
+				insuranceAppliedList.add(getInsuranceForTv(tvProduct, insuranceProduct));
+			}else if (product.getCategoryId().equals(ProductCategory.PHONE_CASE.getCategoryId())) {
+				insuranceAppliedList.add(getInsuranceForPhoneCase(phoneCaseProduct, insuranceProduct));
+			} else if (product.getCategoryId().equals(ProductCategory.SIM.getCategoryId())) {
+				insuranceAppliedList.add(getInsuranceForSim(simProduct, insuranceProduct));
+			} 
 		
 		}
 		return insuranceAppliedList;

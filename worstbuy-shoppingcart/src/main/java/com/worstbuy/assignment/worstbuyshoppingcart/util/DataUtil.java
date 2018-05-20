@@ -1,5 +1,9 @@
 package com.worstbuy.assignment.worstbuyshoppingcart.util;
 
+import static com.worstbuy.assignment.worstbuyshoppingcart.util.Constants.PHONE_INSURANCE_DISCOUNT;
+import static com.worstbuy.assignment.worstbuyshoppingcart.util.Constants.PRODUCT_PRICE;
+import static com.worstbuy.assignment.worstbuyshoppingcart.util.Constants.PRODUCT_PRICE_RELATED_INSURANCE_DISCOUNT;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,19 +14,6 @@ public final class DataUtil {
 
 	private DataUtil() {
 
-	}
-
-	public static Product getFreePhone() {
-
-		Product product = new Product();
-		product.setMaker("Samsung");
-		product.setModel("Samsung-J7-4GLTE");
-		product.setName("Samsung-J7");
-		product.setPrice(0);
-		product.setDescription("Samsung-4G-latest-phone.");
-		product.setCategoryId(ProductCategory.PHONE.getCategoryId());
-
-		return product;
 	}
 
 	public static Product getFreeSim() {
@@ -36,6 +27,20 @@ public final class DataUtil {
 		product.setCategoryId(ProductCategory.SIM.getCategoryId());
 
 		return product;
+	}
+	
+	public static Product getFreePhoneCase() {
+		
+		Product product = new Product();
+		product.setMaker("ABC Plastics");
+		product.setModel("For all models.");
+		product.setName("Phone Plastic Case");
+		product.setPrice(0);
+		product.setDescription("Phone case for all the SIMs.");
+		product.setCategoryId(ProductCategory.PHONE_CASE.getCategoryId());
+
+		return product;
+		
 	}
 
 	public static double getTotalPrice(List<Product> productList) {
@@ -86,6 +91,37 @@ public final class DataUtil {
 		}
 		
 		return orderList;
+	}
+	
+	public static Product getInsuranceForPhone(Product phoneMasterDetails, Product insuranceProduct) {
+		
+		double discount = 0;
+		
+		if(phoneMasterDetails.getPrice() > PRODUCT_PRICE) {
+			discount = PRODUCT_PRICE_RELATED_INSURANCE_DISCOUNT;
+		}
+		
+		if(phoneMasterDetails.getPrice() < PRODUCT_PRICE) {
+			discount = PHONE_INSURANCE_DISCOUNT;
+		}
+		
+		return getNewInsuranceProduct(insuranceProduct, discount);
+		
+	}
+	
+	public static Product getInsuranceForSim(Product simMasterDetails, Product insuranceProduct) {
+		double discount = 0;
+		return getNewInsuranceProduct(insuranceProduct, discount);
+	}
+	
+	public static Product getInsuranceForPhoneCase(Product phoneCaseMasterDetails, Product insuranceProduct) {
+		double discount = 0;
+		return getNewInsuranceProduct(insuranceProduct, discount);
+	}
+	
+	public static Product getInsuranceForTv(Product tvMasterDetails, Product insuranceProduct) {
+		double discount = 0;
+		return getNewInsuranceProduct(insuranceProduct, discount);
 	}
 
 }

@@ -30,7 +30,7 @@ public class ProductMakerBusinessRule {
 			// We should not be applying discounts on Free products.
 			if (product.getMaker().equals(SAMZUNG) && product.getPrice() != 0) {
 				product.setPrice(calculateDiscount(simProduct.getPrice(), SAMZUNG_DISCOUNT));
-			} else {
+			} else if(product.getPrice() != 0){
 				product.setPrice(simProduct.getPrice());
 			}
 		});
