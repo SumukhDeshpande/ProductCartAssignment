@@ -9,19 +9,20 @@ import com.worstbuy.assignment.worstbuyshoppingcart.dao.ProductDao;
 import com.worstbuy.assignment.worstbuyshoppingcart.exception.ValidationException;
 import com.worstbuy.assignment.worstbuyshoppingcart.model.Cart;
 import com.worstbuy.assignment.worstbuyshoppingcart.model.Product;
+import com.worstbuy.assignment.worstbuyshoppingcart.repositories.ProductRepository;
 import com.worstbuy.assignment.worstbuyshoppingcart.util.CartMaker;
 
 @Service
 public class CartService {
 	
 	@Autowired
-	ProductDao productDao;
-
-	@Autowired
 	CartMaker cartMaker;
 	
+	@Autowired
+	ProductRepository productRepository;
+	
 	public Cart createCart(List<Product> productList) throws ValidationException {
-		List<Product> productMasterList = productDao.getAllProducts();
+		List<Product> productMasterList = productRepository.findAll();
 
 		Cart cart = cartMaker.createCart(productList, productMasterList);
 		return cart;

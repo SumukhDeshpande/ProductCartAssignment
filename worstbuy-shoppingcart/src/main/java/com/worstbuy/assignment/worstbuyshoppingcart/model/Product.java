@@ -1,22 +1,42 @@
 package com.worstbuy.assignment.worstbuyshoppingcart.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 @Entity
+@Table(name="product")
 public class Product {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
+	
+	@Column(name="name")
 	private String name;
+	
+	@Column(name="maker")
 	private String maker;
+	
+	@Column(name="model")
 	private String model;
+	
+	@Column(name="description")
 	private String description;
+	
+	@Column(name="price")
 	private double price;
+	
+	@Column(name="category_id")
 	private Long categoryId;
+	
+	@Column(name="insurance_required")
 	private boolean insuranceRequired;
 
 	public Long getId() {

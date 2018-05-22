@@ -5,21 +5,22 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.worstbuy.assignment.worstbuyshoppingcart.dao.ProductDao;
 import com.worstbuy.assignment.worstbuyshoppingcart.model.Product;
+import com.worstbuy.assignment.worstbuyshoppingcart.repositories.ProductRepository;
 
 @Service
 public class ProductService {
 
 	@Autowired
-	ProductDao productDao;
-
+	ProductRepository productRepository;
+	
 	public List<Product> getAllProducts() {
-		return productDao.getAllProducts();
+		return productRepository.findAll();
 	}
 
 	public String updateProduct(Product product) {
-		return productDao.updateProduct(product);
+		Product productUpdated = productRepository.save(product);
+		return productUpdated == null ? "failure" : "success";
 	}
 
 }

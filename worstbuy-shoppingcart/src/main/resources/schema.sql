@@ -6,7 +6,8 @@ create table product
 	model varchar(255) not null,
 	description varchar(255) not null,
 	price integer not null,
-	category_id integer not null
+	category_id integer not null,
+	insurance_required boolean
 );
 
 
