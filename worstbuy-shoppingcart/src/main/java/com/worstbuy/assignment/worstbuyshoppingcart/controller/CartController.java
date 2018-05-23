@@ -27,7 +27,9 @@ public class CartController {
 		try {
 			cart = new ResponseEntity<Cart>(cartService.createCart(productList), HttpStatus.OK);
 		} catch (ValidationException e) {
-			
+			Cart cartWithError = new Cart();
+			cartWithError.setMessage(e.getMessage());
+			cart = new ResponseEntity<Cart>(cartWithError, HttpStatus.BAD_REQUEST);
 		}
 		return cart;
 		

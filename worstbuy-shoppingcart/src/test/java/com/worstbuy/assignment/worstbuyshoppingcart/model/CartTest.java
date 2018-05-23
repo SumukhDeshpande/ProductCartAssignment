@@ -27,6 +27,7 @@ public class CartTest {
 		
 		cartOne.setOrders(mockProductList);
 		cartOne.setTotalPrice(5000);
+		cartOne.setMessage("Cart is successful.");
 		
 		Order anotherOrder = new Order();
 		anotherOrder.setMaker("Samsung");
@@ -40,6 +41,8 @@ public class CartTest {
 		
 		cartTwo.setOrders(mockAnotherProductList);
 		cartTwo.setTotalPrice(5000);
+		cartTwo.setMessage("Cart is successful.");
+		
 		
 		assertEquals(true, cartOne.equals(cartTwo));
 		

@@ -26,35 +26,24 @@ public class InsuranceBusinessRule implements InsuranceRule{
 		List<Product> insuranceAppliedList = new ArrayList<Product>();
 		
 		Product insuranceProduct = null;
-		Product simProduct = null;
-		Product phoneProduct = null;
-		Product tvProduct = null;
-		Product phoneCaseProduct = null;
 		
 		for (Product product : productMasterList) {
-			if (product.getCategoryId().equals(ProductCategory.PHONE.getCategoryId())) {
-				phoneProduct = product;
-			} else if (product.getCategoryId().equals(ProductCategory.TELEVISION.getCategoryId())) {
-				tvProduct = product;
-			}else if (product.getCategoryId().equals(ProductCategory.PHONE_CASE.getCategoryId())) {
-				phoneCaseProduct = product;
-			} else if (product.getCategoryId().equals(ProductCategory.SIM.getCategoryId())) {
-				simProduct = product;
-			}  else if (product.getCategoryId().equals(ProductCategory.INSURANCE.getCategoryId())) {
+			if (product.getCategoryId().equals(ProductCategory.INSURANCE.getCategoryId())) {
 				insuranceProduct = product;
+				break;
 			}
 		}
 		
 		for(Product product: productsWithInsuranceList) {
 			
 			if (product.getCategoryId().equals(ProductCategory.PHONE.getCategoryId())) {
-				insuranceAppliedList.add(getInsuranceForPhone(phoneProduct, insuranceProduct));
+				insuranceAppliedList.add(getInsuranceForPhone(product, insuranceProduct));
 			} else if (product.getCategoryId().equals(ProductCategory.TELEVISION.getCategoryId())) {
-				insuranceAppliedList.add(getInsuranceForTv(tvProduct, insuranceProduct));
+				insuranceAppliedList.add(getInsuranceForTv(product, insuranceProduct));
 			}else if (product.getCategoryId().equals(ProductCategory.PHONE_CASE.getCategoryId())) {
-				insuranceAppliedList.add(getInsuranceForPhoneCase(phoneCaseProduct, insuranceProduct));
+				insuranceAppliedList.add(getInsuranceForPhoneCase(product, insuranceProduct));
 			} else if (product.getCategoryId().equals(ProductCategory.SIM.getCategoryId())) {
-				insuranceAppliedList.add(getInsuranceForSim(simProduct, insuranceProduct));
+				insuranceAppliedList.add(getInsuranceForSim(product, insuranceProduct));
 			} 
 		
 		}

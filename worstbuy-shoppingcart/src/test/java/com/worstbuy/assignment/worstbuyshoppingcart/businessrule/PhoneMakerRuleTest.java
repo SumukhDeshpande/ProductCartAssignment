@@ -30,21 +30,7 @@ public class PhoneMakerRuleTest {
 
 		productList.add(product);
 
-		List<Product> productMasterList = new ArrayList<Product>();
-
-		Product phoneProduct = new Product();
-
-		phoneProduct.setId(10001L);
-		phoneProduct.setMaker("SamZung");
-		phoneProduct.setModel("SamZung-J7-4GLTE");
-		phoneProduct.setName("SamZung-J7");
-		phoneProduct.setPrice(1000);
-		phoneProduct.setDescription("SamZung-4G-latest-phone.");
-		phoneProduct.setCategoryId(ProductCategory.PHONE.getCategoryId());
-
-		productMasterList.add(phoneProduct);
-
-		phoneMakerBusinessRule.applyProductMakerRule(productList, phoneProduct);
+		phoneMakerBusinessRule.applyProductMakerRule(productList);
 		
 		assertTrue(productList.get(0).getPrice() == 900);
 
@@ -69,21 +55,7 @@ public class PhoneMakerRuleTest {
 
 		productList.add(product);
 
-		List<Product> productMasterList = new ArrayList<Product>();
-
-		Product phoneProduct = new Product();
-
-		phoneProduct.setId(10001L);
-		phoneProduct.setMaker("LG");
-		phoneProduct.setModel("LG-J7-4GLTE");
-		phoneProduct.setName("LG-J7");
-		phoneProduct.setPrice(1000);
-		phoneProduct.setDescription("LG-4G-latest-phone.");
-		phoneProduct.setCategoryId(ProductCategory.PHONE.getCategoryId());
-
-		productMasterList.add(phoneProduct);
-
-		phoneMakerBusinessRule.applyProductMakerRule(productList, phoneProduct);
+		phoneMakerBusinessRule.applyProductMakerRule(productList);
 		
 		assertTrue(productList.get(0).getPrice() == 1000);
 

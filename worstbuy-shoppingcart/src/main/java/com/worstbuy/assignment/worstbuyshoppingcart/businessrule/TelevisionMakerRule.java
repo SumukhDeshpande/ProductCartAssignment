@@ -17,14 +17,12 @@ import com.worstbuy.assignment.worstbuyshoppingcart.model.Product;
 public class TelevisionMakerRule implements ProductMakerRule{
 
 	@Override
-	public void applyProductMakerRule(List<Product> tvList, Product tvProduct) {
+	public void applyProductMakerRule(List<Product> tvList) {
 
 		tvList.forEach(product -> {
 			if (product.getMaker().equals(SAMZUNG) ) {
-				product.setPrice(calculateDiscount(tvProduct.getPrice(), SAMZUNG_DISCOUNT));
-			} else {
-				product.setPrice(tvProduct.getPrice());
-			}
+				product.setPrice(calculateDiscount(product.getPrice(), SAMZUNG_DISCOUNT));
+			} 
 		});
 
 	}

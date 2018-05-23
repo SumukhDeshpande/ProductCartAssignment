@@ -6,6 +6,6 @@ import com.worstbuy.assignment.worstbuyshoppingcart.model.Product;
 
 public interface ProductMakerRule {
 	
-	public void applyProductMakerRule(List<Product> productList, Product productMatserItem);
+	public void applyProductMakerRule(List<Product> productList);
 
 }

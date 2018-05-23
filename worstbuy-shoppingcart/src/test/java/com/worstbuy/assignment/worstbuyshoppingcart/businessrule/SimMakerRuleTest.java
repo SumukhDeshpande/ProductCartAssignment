@@ -30,17 +30,7 @@ public class SimMakerRuleTest {
 
 		productList.add(product);
 
-
-		Product simMasterProduct = new Product();
-		simMasterProduct.setId(10002L);
-		simMasterProduct.setMaker("Vodafone");
-		simMasterProduct.setModel("4G");
-		simMasterProduct.setName("Vodafone");
-		simMasterProduct.setPrice(300);
-		simMasterProduct.setDescription("This is a 4G Sim.");
-		simMasterProduct.setCategoryId(ProductCategory.SIM.getCategoryId());
-
-		simMakerRule.applyProductMakerRule(productList, simMasterProduct);
+		simMakerRule.applyProductMakerRule(productList);
 		
 		assertTrue(productList.get(0).getPrice() == 300);
 		
@@ -64,17 +54,7 @@ public class SimMakerRuleTest {
 
 		productList.add(product);
 
-
-		Product simMasterProduct = new Product();
-		simMasterProduct.setId(10002L);
-		simMasterProduct.setMaker("SamZung");
-		simMasterProduct.setModel("4G");
-		simMasterProduct.setName("SamZung");
-		simMasterProduct.setPrice(300);
-		simMasterProduct.setDescription("This is a 4G Sim.");
-		simMasterProduct.setCategoryId(ProductCategory.SIM.getCategoryId());
-
-		simMakerRule.applyProductMakerRule(productList, simMasterProduct);
+		simMakerRule.applyProductMakerRule(productList);
 		
 		assertTrue(productList.get(0).getPrice() == 270);
 		

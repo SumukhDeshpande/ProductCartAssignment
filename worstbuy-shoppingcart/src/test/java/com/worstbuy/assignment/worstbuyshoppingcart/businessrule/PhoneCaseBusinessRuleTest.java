@@ -1,11 +1,13 @@
 package com.worstbuy.assignment.worstbuyshoppingcart.businessrule;
 
-import java.util.List;
-import org.junit.Test;
-import com.worstbuy.assignment.worstbuyshoppingcart.model.Product;
-import com.worstbuy.assignment.worstbuyshoppingcart.util.ProductCategory;
 import static com.worstbuy.assignment.worstbuyshoppingcart.util.TestUtil.getMultiplePhoneCases;
 import static org.junit.Assert.assertTrue;
+
+import java.util.List;
+
+import org.junit.Test;
+
+import com.worstbuy.assignment.worstbuyshoppingcart.model.Product;
 
 public class PhoneCaseBusinessRuleTest {
 	
@@ -17,18 +19,22 @@ public class PhoneCaseBusinessRuleTest {
 		
 		List<Product> phoneCaseList = getMultiplePhoneCases(3);
 		
-		Product phoneCaseMasterDetails = new Product();
-		phoneCaseMasterDetails.setId(10004L);
-		phoneCaseMasterDetails.setMaker("Phone Case");
-		phoneCaseMasterDetails.setModel("Some Phone Case");
-		phoneCaseMasterDetails.setName("Plastic");
-		phoneCaseMasterDetails.setDescription("This is a Plastic Phone Case.");
-		phoneCaseMasterDetails.setPrice(150);
-		phoneCaseMasterDetails.setCategoryId(ProductCategory.PHONE_CASE.getCategoryId());
-		
-		List<Product> phoneListProcessed = phoneCaseBusinessRule.processPhoneCaseOrder(phoneCaseList, phoneCaseMasterDetails);
+		List<Product> phoneListProcessed = phoneCaseBusinessRule.processPhoneCaseOrder(phoneCaseList);
 		
 		assertTrue(phoneListProcessed.size() == 7);
+		
+	}
+	
+	@Test
+	public void testPhoneCaseBusinessRuleForLessThan3sMultiple() {
+		
+		PhoneCaseBusinessRule phoneCaseBusinessRule = new PhoneCaseBusinessRule();
+		
+		List<Product> phoneCaseList = getMultiplePhoneCases(5);
+		
+		List<Product> phoneListProcessed = phoneCaseBusinessRule.processPhoneCaseOrder(phoneCaseList);
+		
+		assertTrue(phoneListProcessed.size() == 9);
 		
 	}
 	

@@ -30,17 +30,8 @@ public class TelevisionMakerRuleTest {
 		product.setCategoryId(ProductCategory.TELEVISION.getCategoryId());
 
 		productList.add(product);
-
-		Product tvMasterProduct = new Product();
-		tvMasterProduct.setId(10003L);
-		tvMasterProduct.setMaker("SamZung");
-		tvMasterProduct.setModel("LCD");
-		tvMasterProduct.setName("SamZung");
-		tvMasterProduct.setPrice(1000);
-		tvMasterProduct.setDescription("This is a LCD TV.");
-		tvMasterProduct.setCategoryId(ProductCategory.TELEVISION.getCategoryId());
 		
-		televisionMakerRule.applyProductMakerRule(productList, tvMasterProduct);
+		televisionMakerRule.applyProductMakerRule(productList);
 		
 		assertTrue(productList.get(0).getPrice() == 900);
 		
@@ -65,16 +56,7 @@ public class TelevisionMakerRuleTest {
 
 		productList.add(product);
 
-		Product tvMasterProduct = new Product();
-		tvMasterProduct.setId(10003L);
-		tvMasterProduct.setMaker("LG");
-		tvMasterProduct.setModel("LCD");
-		tvMasterProduct.setName("LG");
-		tvMasterProduct.setPrice(1000);
-		tvMasterProduct.setDescription("This is a LCD TV.");
-		tvMasterProduct.setCategoryId(ProductCategory.TELEVISION.getCategoryId());
-		
-		televisionMakerRule.applyProductMakerRule(productList, tvMasterProduct);
+		televisionMakerRule.applyProductMakerRule(productList);
 		
 		assertTrue(productList.get(0).getPrice() == 1000);
 		

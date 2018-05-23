@@ -17,15 +17,13 @@ import com.worstbuy.assignment.worstbuyshoppingcart.model.Product;
 public class PhoneCaseMakerRule implements ProductMakerRule{
 
 	@Override
-	public void applyProductMakerRule(List<Product> phoneCaseList, Product phoneCaseProduct) {
+	public void applyProductMakerRule(List<Product> phoneCaseList) {
 
 		phoneCaseList.forEach(product -> {
 			// We should not be applying discounts on Free products.
 			if (product.getMaker().equals(SAMZUNG) && product.getPrice() != 0) {
-				product.setPrice(calculateDiscount(phoneCaseProduct.getPrice(), SAMZUNG_DISCOUNT));
-			} else {
-				product.setPrice(phoneCaseProduct.getPrice());
-			}
+				product.setPrice(calculateDiscount(product.getPrice(), SAMZUNG_DISCOUNT));
+			} 
 		});
 
 	}

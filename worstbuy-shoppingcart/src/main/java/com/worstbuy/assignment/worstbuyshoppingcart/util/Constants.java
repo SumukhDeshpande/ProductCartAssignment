@@ -20,7 +20,9 @@ public final class Constants {
 	
 	public static final double MAXIMUM_SIM_ORDER_LIMIT = 10;
 	
-	public static final String SIM_CARD_ORDER_LIMIT_VALIDATION_MESSAGE = "More than 10 Sim Cards are not allowed.";	
+	public static final String SIM_CARD_ORDER_LIMIT_VALIDATION_MESSAGE = "More than 10 Sim Cards are not allowed.";
+	
+	public static final String CART_SUCCESSFUL_MESSAGE = "Cart is updated successfully.";
 	
 
 }

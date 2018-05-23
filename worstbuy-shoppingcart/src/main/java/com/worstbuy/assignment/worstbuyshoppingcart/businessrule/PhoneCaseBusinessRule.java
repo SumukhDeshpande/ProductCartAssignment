@@ -11,15 +11,13 @@ import static com.worstbuy.assignment.worstbuyshoppingcart.util.DataUtil.getFree
 @Component
 public class PhoneCaseBusinessRule implements PhoneCaseRule{
 	
-	public List<Product> processPhoneCaseOrder(List<Product> phoneCaseList, Product phoneCaseMasterDetails){
+	public List<Product> processPhoneCaseOrder(List<Product> phoneCaseList){
 		//For every 3 Phone Cases you get 4 Phone Cases free. 
 		//So for example: When 6 Phone Cases are Ordered you get 8 free.
 		// 6 / 3 = 2 in turn 2 * 4 which comes 8. 
 		int freePhoneCaseMultiplier = phoneCaseList.size() / 3;
 		
 		int freePhoneCaseQuantity = freePhoneCaseMultiplier * 4;
-		
-		phoneCaseList.forEach(product -> product.setPrice(phoneCaseMasterDetails.getPrice()));
 		
 		for(int i = 0; i < freePhoneCaseQuantity; i++) {
 			phoneCaseList.add(getFreePhoneCase());

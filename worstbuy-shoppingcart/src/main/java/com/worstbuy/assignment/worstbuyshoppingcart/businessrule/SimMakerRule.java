@@ -17,15 +17,13 @@ import com.worstbuy.assignment.worstbuyshoppingcart.model.Product;
 public class SimMakerRule implements ProductMakerRule{
 
 	@Override
-	public void applyProductMakerRule(List<Product> simList, Product simProduct) {
+	public void applyProductMakerRule(List<Product> simList) {
 
 		simList.forEach(product -> {
 			// We should not be applying discounts on Free products.
 			if (product.getMaker().equals(SAMZUNG) && product.getPrice() != 0) {
-				product.setPrice(calculateDiscount(simProduct.getPrice(), SAMZUNG_DISCOUNT));
-			} else if(product.getPrice() != 0){
-				product.setPrice(simProduct.getPrice());
-			}
+				product.setPrice(calculateDiscount(product.getPrice(), SAMZUNG_DISCOUNT));
+			} 
 		});
 
 	}

@@ -6,6 +6,6 @@ import com.worstbuy.assignment.worstbuyshoppingcart.model.Product;
 
 public interface PhoneCaseRule {
 	
-	public List<Product> processPhoneCaseOrder(List<Product> phoneCaseList, Product phoneCaseMasterDetails);
+	public List<Product> processPhoneCaseOrder(List<Product> phoneCaseList);
 
 }

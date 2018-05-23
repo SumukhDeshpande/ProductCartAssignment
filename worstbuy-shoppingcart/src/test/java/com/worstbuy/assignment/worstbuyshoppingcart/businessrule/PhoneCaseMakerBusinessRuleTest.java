@@ -25,18 +25,11 @@ public class PhoneCaseMakerBusinessRuleTest {
 		
 		phoneCaseList.get(0).setMaker("SamZung");
 		
-		Product phoneCaseMasterDetails = new Product();
-		phoneCaseMasterDetails.setId(10004L);
-		phoneCaseMasterDetails.setMaker("Phone Case");
-		phoneCaseMasterDetails.setModel("Some Phone Case");
-		phoneCaseMasterDetails.setName("Plastic");
-		phoneCaseMasterDetails.setDescription("This is a Plastic Phone Case.");
-		phoneCaseMasterDetails.setPrice(150);
-		phoneCaseMasterDetails.setCategoryId(ProductCategory.PHONE_CASE.getCategoryId());
+		phoneCaseMakerRule.applyProductMakerRule(phoneCaseList);
 		
-		phoneCaseMakerRule.applyProductMakerRule(phoneCaseList, phoneCaseMasterDetails);
+		System.out.println(phoneCaseList.get(0).getPrice());
 		
-		assertTrue(phoneCaseList.get(0).getPrice() == 135.0);
+		assertTrue(phoneCaseList.get(0).getPrice() == 90.0);
 		
 		
 		
@@ -52,18 +45,9 @@ public class PhoneCaseMakerBusinessRuleTest {
 		
 		phoneCaseList = getMultiplePhoneCases(1);
 		
-		Product phoneCaseMasterDetails = new Product();
-		phoneCaseMasterDetails.setId(10004L);
-		phoneCaseMasterDetails.setMaker("Phone Case");
-		phoneCaseMasterDetails.setModel("Some Phone Case");
-		phoneCaseMasterDetails.setName("Plastic");
-		phoneCaseMasterDetails.setDescription("This is a Plastic Phone Case.");
-		phoneCaseMasterDetails.setPrice(150);
-		phoneCaseMasterDetails.setCategoryId(ProductCategory.PHONE_CASE.getCategoryId());
+		phoneCaseMakerRule.applyProductMakerRule(phoneCaseList);
 		
-		phoneCaseMakerRule.applyProductMakerRule(phoneCaseList, phoneCaseMasterDetails);
-		
-		assertTrue(phoneCaseList.get(0).getPrice() == 150);
+		assertTrue(phoneCaseList.get(0).getPrice() == 100);
 		
 		
 		

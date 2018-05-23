@@ -93,34 +93,42 @@ public final class DataUtil {
 		return orderList;
 	}
 	
-	public static Product getInsuranceForPhone(Product phoneMasterDetails, Product insuranceProduct) {
+	public static Product getInsuranceForPhone(Product phoneDetails, Product insuranceProduct) {
 		
+		double phoneBasedDiscount = 0;
+		double priceBasedDiscount = 0;
+		
+		if(phoneDetails.getPrice() > PRODUCT_PRICE) {
+			priceBasedDiscount = PRODUCT_PRICE_RELATED_INSURANCE_DISCOUNT;
+		}else {
+			phoneBasedDiscount = PHONE_INSURANCE_DISCOUNT;
+		}
+		
+		return getNewInsuranceProduct(insuranceProduct, priceBasedDiscount > phoneBasedDiscount ? priceBasedDiscount : phoneBasedDiscount);
+		
+	}
+	
+	public static Product getInsuranceForSim(Product simDetails, Product insuranceProduct) {
 		double discount = 0;
-		
-		if(phoneMasterDetails.getPrice() > PRODUCT_PRICE) {
+		if(simDetails.getPrice() > PRODUCT_PRICE) {
 			discount = PRODUCT_PRICE_RELATED_INSURANCE_DISCOUNT;
 		}
-		
-		if(phoneMasterDetails.getPrice() < PRODUCT_PRICE) {
-			discount = PHONE_INSURANCE_DISCOUNT;
+		return getNewInsuranceProduct(insuranceProduct, discount);
+	}
+	
+	public static Product getInsuranceForPhoneCase(Product phoneCaseDetails, Product insuranceProduct) {
+		double discount = 0;
+		if(phoneCaseDetails.getPrice() > PRODUCT_PRICE) {
+			discount = PRODUCT_PRICE_RELATED_INSURANCE_DISCOUNT;
 		}
-		
-		return getNewInsuranceProduct(insuranceProduct, discount);
-		
-	}
-	
-	public static Product getInsuranceForSim(Product simMasterDetails, Product insuranceProduct) {
-		double discount = 0;
 		return getNewInsuranceProduct(insuranceProduct, discount);
 	}
 	
-	public static Product getInsuranceForPhoneCase(Product phoneCaseMasterDetails, Product insuranceProduct) {
+	public static Product getInsuranceForTv(Product tvDetails, Product insuranceProduct) {
 		double discount = 0;
-		return getNewInsuranceProduct(insuranceProduct, discount);
-	}
-	
-	public static Product getInsuranceForTv(Product tvMasterDetails, Product insuranceProduct) {
-		double discount = 0;
+		if(tvDetails.getPrice() > PRODUCT_PRICE) {
+			discount = PRODUCT_PRICE_RELATED_INSURANCE_DISCOUNT;
+		}
 		return getNewInsuranceProduct(insuranceProduct, discount);
 	}
 

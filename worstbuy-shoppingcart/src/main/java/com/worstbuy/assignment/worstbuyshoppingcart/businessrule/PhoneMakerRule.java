@@ -17,16 +17,13 @@ import com.worstbuy.assignment.worstbuyshoppingcart.model.Product;
 public class PhoneMakerRule implements ProductMakerRule{
 	
 	@Override
-	public void applyProductMakerRule(List<Product> phoneList, Product phoneProduct) {
+	public void applyProductMakerRule(List<Product> phoneList) {
 
 		phoneList.forEach(product -> {
 			if (product.getMaker().equals(SAMZUNG)) {
-				product.setPrice(calculateDiscount(phoneProduct.getPrice(), SAMZUNG_DISCOUNT));
-			} else {
-				product.setPrice(phoneProduct.getPrice());
-			}
+				product.setPrice(calculateDiscount(product.getPrice(), SAMZUNG_DISCOUNT));
+			} 
 		});
-
 	}
 
 }
