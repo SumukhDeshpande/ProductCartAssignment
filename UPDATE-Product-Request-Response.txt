@@ -1,0 +1,48 @@
+------UPDATE Products URL : http://localhost:8080/worstbuyshop/updateProduct
+---Update Phone
+{
+        "id": 1001,
+        "name": "SamZung A5",
+        "maker": "SamZung",
+        "model": "SamZung A5 Phone",
+        "description": "This is a 4G Phone",
+        "price": 252,
+        "categoryId": 1,
+        "insuranceRequired": false
+}
+
+--Update Sim
+{
+        "id": 1004,
+        "name": "Vodafone",
+        "maker": "Vodafone",
+        "model": "4G",
+        "description": "This is a 3G Sim",
+        "price": 23,
+        "categoryId": 4,
+        "insuranceRequired": false
+    }
+
+--Update TV
+{
+        "id": 1008,
+        "name": "YG TV XGX32",
+        "maker": "YG",
+        "model": "LCD",
+        "description": "This is a 62 inch LCD TV",
+        "price": 550,
+        "categoryId": 2,
+        "insuranceRequired": false
+}
+
+--Update Phone Case
+{
+        "id": 1009,
+        "name": "Phone Case",
+        "maker": "Some Phone Case",
+        "model": "Plastic",
+        "description": "This is a Silicon Phone Case",
+        "price": 55,
+        "categoryId": 5,
+        "insuranceRequired": false
+    } 

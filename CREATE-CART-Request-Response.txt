@@ -1,0 +1,323 @@
+CREATE CART URL: http://localhost:8080/worstbuyshop/createCart
+Case : 
+Insurance is discounted 25% for any product over 400. 
+Insurance is discounted 15% on phones. 
+But the discount is not cumulative. There is a 10% discount on SamZung products.
+There is one Sim card added for each phone.
+
+Request:
+[
+{
+        "id": 1001,
+        "name": "SamZung A5",
+        "maker": "SamZung",
+        "model": "SamZung A5 Phone",
+        "description": "This is a 4G Phone",
+        "price": 250,
+        "categoryId": 1,
+        "insuranceRequired": true
+    },
+	{
+        "id": 1002,
+        "name": "Pear myPhoneX",
+        "maker": "Pear",
+        "model": "Pear myPhoneX",
+        "description": "This is a 4G Phone",
+        "price": 900,
+        "categoryId": 1,
+        "insuranceRequired": true
+    }
+]
+
+Response:
+{
+    "orders": [
+        {
+            "name": "Vodafone",
+            "maker": "Vodafone",
+            "model": "4GLTE",
+            "description": "Vodafone SIM card.",
+            "price": 0,
+            "categoryId": 4
+        },
+        {
+            "name": "Vodafone",
+            "maker": "Vodafone",
+            "model": "4GLTE",
+            "description": "Vodafone SIM card.",
+            "price": 0,
+            "categoryId": 4
+        },
+        {
+            "name": "SamZung A5",
+            "maker": "SamZung",
+            "model": "SamZung A5 Phone",
+            "description": "This is a 4G Phone",
+            "price": 256.5,
+            "categoryId": 1
+        },
+        {
+            "name": "Pear myPhoneX",
+            "maker": "Pear",
+            "model": "Pear myPhoneX",
+            "description": "This is a 4G Phone",
+            "price": 1026,
+            "categoryId": 1
+        },
+        {
+            "name": "XYZ Company General Insurance",
+            "maker": "General Insurance",
+            "model": "General Insurance",
+            "description": "This is a General Insurance",
+            "price": 102,
+            "categoryId": 3
+        },
+        {
+            "name": "XYZ Company General Insurance",
+            "maker": "General Insurance",
+            "model": "General Insurance",
+            "description": "This is a General Insurance",
+            "price": 90,
+            "categoryId": 3
+        }
+    ],
+    "totalPrice": 1474.5,
+    "message": "Cart is updated successfully."
+}
+
+Case: There is a "Buy 3 get 4" on Phone Cases
+Request:
+
+[
+{
+        "id": 1009,
+        "name": "Phone Case",
+        "maker": "Some Phone Case",
+        "model": "Plastic",
+        "description": "This is a Plastic Phone Case",
+        "price": 50,
+        "categoryId": 5,
+        "insuranceRequired": false
+},
+{
+        "id": 1009,
+        "name": "Phone Case",
+        "maker": "Some Phone Case",
+        "model": "Plastic",
+        "description": "This is a Plastic Phone Case",
+        "price": 50,
+        "categoryId": 5,
+        "insuranceRequired": false
+    },
+{
+        "id": 1009,
+        "name": "Phone Case",
+        "maker": "Some Phone Case",
+        "model": "Plastic",
+        "description": "This is a Plastic Phone Case",
+        "price": 50,
+        "categoryId": 5,  
+        "insuranceRequired": false
+    },
+    {
+        "id": 1009,
+        "name": "Phone Case",
+        "maker": "Some Phone Case",
+        "model": "Plastic",
+        "description": "This is a Plastic Phone Case",
+        "price": 50,
+        "categoryId": 5,  
+        "insuranceRequired": false
+    }
+]
+
+Response:
+
+{
+    "orders": [
+        {
+            "name": "Phone Case",
+            "maker": "Some Phone Case",
+            "model": "Plastic",
+            "description": "This is a Plastic Phone Case",
+            "price": 57,
+            "categoryId": 5
+        },
+        {
+            "name": "Phone Case",
+            "maker": "Some Phone Case",
+            "model": "Plastic",
+            "description": "This is a Plastic Phone Case",
+            "price": 57,
+            "categoryId": 5
+        },
+        {
+            "name": "Phone Case",
+            "maker": "Some Phone Case",
+            "model": "Plastic",
+            "description": "This is a Plastic Phone Case",
+            "price": 57,
+            "categoryId": 5
+        },
+        {
+            "name": "Phone Case",
+            "maker": "Some Phone Case",
+            "model": "Plastic",
+            "description": "This is a Plastic Phone Case",
+            "price": 57,
+            "categoryId": 5
+        },
+        {
+            "name": "Phone Plastic Case",
+            "maker": "ABC Plastics",
+            "model": "For all models.",
+            "description": "Phone case for all the SIMs.",
+            "price": 0,
+            "categoryId": 5
+        },
+        {
+            "name": "Phone Plastic Case",
+            "maker": "ABC Plastics",
+            "model": "For all models.",
+            "description": "Phone case for all the SIMs.",
+            "price": 0,
+            "categoryId": 5
+        },
+        {
+            "name": "Phone Plastic Case",
+            "maker": "ABC Plastics",
+            "model": "For all models.",
+            "description": "Phone case for all the SIMs.",
+            "price": 0,
+            "categoryId": 5
+        },
+        {
+            "name": "Phone Plastic Case",
+            "maker": "ABC Plastics",
+            "model": "For all models.",
+            "description": "Phone case for all the SIMs.",
+            "price": 0,
+            "categoryId": 5
+        }
+    ],
+    "totalPrice": 228,
+    "message": "Cart is updated successfully."
+}
+
+Case: 
+There 10% discount of SamZung products.
+Insurance is discounted 25% for any product over 400.
+
+Request:
+[
+{
+        "id": 1007,
+        "name": "SamZung TV SZX50",
+        "maker": "SamZung",
+        "model": "LCD",
+        "description": "This is a 50 inch LCD TV",
+        "price": 900,
+        "categoryId": 2,
+        "insuranceRequired": true
+}
+]
+
+Response:
+{
+    "orders": [
+        {
+            "name": "SamZung TV SZX50",
+            "maker": "SamZung",
+            "model": "LCD",
+            "description": "This is a 50 inch LCD TV",
+            "price": 923.4,
+            "categoryId": 2
+        },
+        {
+            "name": "XYZ Company General Insurance",
+            "maker": "General Insurance",
+            "model": "General Insurance",
+            "description": "This is a General Insurance",
+            "price": 90,
+            "categoryId": 3
+        }
+    ],
+    "totalPrice": 1013.4,
+    "message": "Cart is updated successfully."
+}
+
+Case: More than 10 Sims not allowed.
+Request:
+[
+{
+        "id": 1004,
+        "name": "Vodafone",
+        "maker": "Vodafone",
+        "model": "4G",
+        "description": "This is a 4G Sim",
+        "price": 20,
+        "categoryId": 4,
+        "insuranceRequired": false
+    },
+	
+	{
+        "id": 1004,
+        "name": "Vodafone",
+        "maker": "Vodafone",
+        "model": "4G",
+        "description": "This is a 4G Sim",
+        "price": 20,
+        "categoryId": 4,
+        "insuranceRequired": false
+    },
+	
+	{
+        "id": 1004,
+        "name": "Vodafone",
+        "maker": "Vodafone",
+        "model": "4G",
+        "description": "This is a 4G Sim",
+        "price": 20,
+        "categoryId": 4,
+        "insuranceRequired": false
+    },
+	{
+        "id": 1004,
+        "name": "Vodafone",
+        "maker": "Vodafone",
+        "model": "4G",
+        "description": "This is a 4G Sim",
+        "price": 20,
+        "categoryId": 4,
+        "insuranceRequired": false
+    },
+	{
+        "id": 1004,
+        "name": "Vodafone",
+        "maker": "Vodafone",
+        "model": "4G",
+        "description": "This is a 4G Sim",
+        "price": 20,
+        "categoryId": 4,
+        "insuranceRequired": false
+    },
+	{
+        "id": 1004,
+        "name": "Vodafone",
+        "maker": "Vodafone",
+        "model": "4G",
+        "description": "This is a 4G Sim",
+        "price": 20,
+        "categoryId": 4,
+        "insuranceRequired": false
+    }
+
+]
+
+Respone:
+{
+    "orders": null,
+    "totalPrice": 0,
+    "message": "More than 10 Sim Cards are not allowed."
+}
+

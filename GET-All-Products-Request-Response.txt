@@ -1,0 +1,93 @@
+------GET ALL PRODUCTS URL: http://localhost:8080/worstbuyshop/products
+[
+    {
+        "id": 1001,
+        "name": "SamZung A5",
+        "maker": "SamZung",
+        "model": "SamZung A5 Phone",
+        "description": "This is a 4G Phone",
+        "price": 250,
+        "categoryId": 1,
+        "insuranceRequired": false
+    },
+    {
+        "id": 1002,
+        "name": "Pear myPhoneX",
+        "maker": "Pear",
+        "model": "Pear myPhoneX",
+        "description": "This is a 4G Phone",
+        "price": 900,
+        "categoryId": 1,
+        "insuranceRequired": false
+    },
+    {
+        "id": 1003,
+        "name": "Pear myPhone7",
+        "maker": "Pear",
+        "model": "Pear myPhone7",
+        "description": "This is a 4G Phone",
+        "price": 300,
+        "categoryId": 1,
+        "insuranceRequired": false
+    },
+    {
+        "id": 1004,
+        "name": "Vodafone",
+        "maker": "Vodafone",
+        "model": "4G",
+        "description": "This is a 4G Sim",
+        "price": 20,
+        "categoryId": 4,
+        "insuranceRequired": false
+    },
+    {
+        "id": 1005,
+        "name": "XYZ Company General Insurance",
+        "maker": "General Insurance",
+        "model": "General Insurance",
+        "description": "This is a General Insurance",
+        "price": 120,
+        "categoryId": 3,
+        "insuranceRequired": false
+    },
+    {
+        "id": 1006,
+        "name": "SamZung TV SZX40",
+        "maker": "SamZung",
+        "model": "LCD",
+        "description": "This is a 40 inch LCD TV",
+        "price": 700,
+        "categoryId": 2,
+        "insuranceRequired": false
+    },
+    {
+        "id": 1007,
+        "name": "SamZung TV SZX50",
+        "maker": "SamZung",
+        "model": "LCD",
+        "description": "This is a 50 inch LCD TV",
+        "price": 900,
+        "categoryId": 2,
+        "insuranceRequired": false
+    },
+    {
+        "id": 1008,
+        "name": "XG TV XGX32",
+        "maker": "XG",
+        "model": "LCD",
+        "description": "This is a 32 inch LCD TV",
+        "price": 350,
+        "categoryId": 2,
+        "insuranceRequired": false
+    },
+    {
+        "id": 1009,
+        "name": "Phone Case",
+        "maker": "Some Phone Case",
+        "model": "Plastic",
+        "description": "This is a Plastic Phone Case",
+        "price": 50,
+        "categoryId": 5,
+        "insuranceRequired": false
+    }
+]
